@@ -101,75 +101,6 @@
 			<div class="container">
 				<div class="row small-gutters">
 					<div class="col-xl-3 col-lg-3 col-md-3">
-						<nav class="categories">
-							<ul class="clearfix">
-								<li><span>
-										<a href="#">
-											<span class="hamburger hamburger--spin">
-												<span class="hamburger-box">
-													<span class="hamburger-inner"></span>
-												</span>
-											</span>
-											Categories
-										</a>
-									</span>
-									<div id="menu">
-										<ul>
-											<li><span><a href="#0">Collections</a></span>
-												<ul>
-													<li><a href="listing-grid-1-full.html">Trending</a></li>
-													<li><a href="listing-grid-2-full.html">Life style</a></li>
-													<li><a href="listing-grid-3.html">Running</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Training</a></li>
-													<li><a href="listing-grid-5-sidebar-right.html">View all Collections</a></li>
-												</ul>
-											</li>
-											<li><span><a href="#">Men</a></span>
-												<ul>
-													<li><a href="listing-grid-6-sidebar-left.html">Offers</a></li>
-													<li><a href="listing-grid-7-sidebar-right.html">Shoes</a></li>
-													<li><a href="listing-row-1-sidebar-left.html">Clothing</a></li>
-													<li><a href="listing-row-3-sidebar-left.html">Accessories</a></li>
-													<li><a href="listing-row-4-sidebar-extended.html">Equipment</a></li>
-												</ul>
-											</li>
-											<li><span><a href="#">Women</a></span>
-												<ul>
-													<li><a href="listing-grid-1-full.html">Best Sellers</a></li>
-													<li><a href="listing-grid-2-full.html">Clothing</a></li>
-													<li><a href="listing-grid-3.html">Accessories</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Shoes</a></li>
-												</ul>
-											</li>
-											<li><span><a href="#">Boys</a></span>
-												<ul>
-													<li><a href="listing-grid-6-sidebar-left.html">Easy On Shoes</a></li>
-													<li><a href="listing-grid-7-sidebar-right.html">Clothing</a></li>
-													<li><a href="listing-row-3-sidebar-left.html">Must Have</a></li>
-													<li><a href="listing-row-4-sidebar-extended.html">All Boys</a></li>
-												</ul>
-											</li>
-											<li><span><a href="#">Girls</a></span>
-												<ul>
-													<li><a href="listing-grid-1-full.html">New Releases</a></li>
-													<li><a href="listing-grid-2-full.html">Clothing</a></li>
-													<li><a href="listing-grid-3.html">Sale</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Best Sellers</a></li>
-												</ul>
-											</li>
-											<li><span><a href="#">Customize</a></span>
-												<ul>
-													<li><a href="listing-row-1-sidebar-left.html">For Men</a></li>
-													<li><a href="listing-row-2-sidebar-right.html">For Women</a></li>
-													<li><a href="listing-row-4-sidebar-extended.html">For Boys</a></li>
-													<li><a href="listing-grid-1-full.html">For Girls</a></li>
-												</ul>
-											</li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
 					</div>
 					<div class="col-xl-6 col-lg-7 col-md-6 d-none d-md-block">
 						<div class="custom-search-input">
@@ -602,56 +533,61 @@
 					<div id="logo">
 							<a href="index.html"><img src="../../assets-front/img/lebron-logo-transparent.png" alt="" width="150" height="60"></a>
 					</div>
-					<div class="collapse dont-collapse-sm links" id="collapse_1">
-						<ul>
-							<li><a href="about.html">About us</a></li>
-							<li><a href="help.html">Faq</a></li>
-							<li><a href="help.html">Help</a></li>
-							<li><a href="account.html">My account</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="contacts.html">Contacts</a></li>
-						</ul>
+					<br>
+					<div class="">
+						<p style="color: #FFFFFF;">Líderes en el mercado en venta de suplementos deportivos.</p>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
-					<h3 data-target="#collapse_2">Categories</h3>
+				<div class="col-lg-2 col-md-6">
 					<div class="collapse dont-collapse-sm links" id="collapse_2">
 						<ul>
-							<li><a href="listing-grid-1-full.html">Clothes</a></li>
-							<li><a href="listing-grid-2-full.html">Electronics</a></li>
-							<li><a href="listing-grid-1-full.html">Furniture</a></li>
-							<li><a href="listing-grid-3.html">Glasses</a></li>
-							<li><a href="listing-grid-1-full.html">Shoes</a></li>
-							<li><a href="listing-grid-1-full.html">Watches</a></li>
+							<li><a href="listing-grid-1-full.html">Promociones</a></li>
+							<li><a href="listing-grid-2-full.html">Tienda</a></li>
+							<li><a href="listing-grid-1-full.html">Franquicia</a></li>
+							<li><a href="listing-grid-3.html">Contacto</a></li>
+							<li><a href="listing-grid-1-full.html">Mayoristas</a></li>
+							<li><a href="listing-grid-1-full.html">Inversores</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
-						<h3 data-target="#collapse_3">Contacts</h3>
-					<div class="collapse dont-collapse-sm contacts" id="collapse_3">
-						<ul>
-							<li><i class="ti-home"></i>97845 Baker st. 567<br>Los Angeles - US</li>
-							<li><i class="ti-headphone-alt"></i>+94 423-23-221</li>
-							<li><i class="ti-email"></i><a href="#0">info@allaia.com</a></li>
-						</ul>
+						<h3 >Sucursales y horarios</h3>
+					<div>
+						<div style="display: flex">
+							<img src="../../assets-front/img/location.png" width="25" height="25"/>
+							<p style="color: #FFFFFF;">Av Mitre 564, San Miguel de Tucumán </p>
+						</div>
+						<div style="display: flex">
+							<img src="../../assets-front/img/location.png" width="25" height="25"/>
+							<p style="color: #FFFFFF;">Buenos Aires 42, San Miguel de Tucumán </p>
+						</div>
+						<div style="display: flex">
+							<img src="../../assets-front/img/location.png" width="25" height="25"/>
+							<p style="color: #FFFFFF;">Belgrano 354, Lules  </p>
+						</div>
+						<div style="display: flex">
+							<img src="../../assets-front/img/location.png" width="25" height="25"/>
+							<p style="color: #FFFFFF;">25 de Mayo 762, San Miguel de Tucumán  </p>
+						</div>							
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
-						<h3 data-target="#collapse_4">Keep in touch</h3>
+						<h3 data-target="#collapse_4">Novedades</h3>
 					<div class="collapse dont-collapse-sm" id="collapse_4">
 						<div id="newsletter">
+							<p style="color: #FFFFFF;">Deja tu correo electrónico para que nos contactemos con las últimas novedades</p>
 						    <div class="form-group">
-						        <input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Your email">
+						        <input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Email">
 						        <button type="submit" id="submit-newsletter"><i class="ti-angle-double-right"></i></button>
 						    </div>
 						</div>
 						<div class="follow_us">
-							<h5>Follow Us</h5>
+							<h5>Seguinos en redes</h5>
 							<ul>
-								<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/twitter_icon.svg" alt="" class="lazy"></a></li>
-								<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/facebook_icon.svg" alt="" class="lazy"></a></li>
-								<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/instagram_icon.svg" alt="" class="lazy"></a></li>
-								<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/youtube_icon.svg" alt="" class="lazy"></a></li>
+								<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../../assets-front/img/twitter_icon.svg" alt="" class="lazy"></a></li>
+								<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../../assets-front/img/facebook_icon.svg" alt="" class="lazy"></a></li>
+								<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../../assets-front/img/instagram_icon.svg" alt="" class="lazy"></a></li>
+								<li><a href="#0"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="../../assets-front/img/youtube_icon.svg" alt="" class="lazy"></a></li>
 							</ul>
 						</div>
 					</div>
@@ -661,33 +597,12 @@
 			<hr>
 			<div class="row add_bottom_25">
 				<div class="col-lg-6">
-					<ul class="footer-selector clearfix">
-						<li>
-							<div class="styled-select lang-selector">
-								<select>
-									<option value="English" selected>English</option>
-									<option value="French">French</option>
-									<option value="Spanish">Spanish</option>
-									<option value="Russian">Russian</option>
-								</select>
-							</div>
-						</li>
-						<li>
-							<div class="styled-select currency-selector">
-								<select>
-									<option value="US Dollars" selected>US Dollars</option>
-									<option value="Euro">Euro</option>
-								</select>
-							</div>
-						</li>
-						<li><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/cards_all.svg" alt="" width="198" height="30" class="lazy"></li>
-					</ul>
+					
 				</div>
 				<div class="col-lg-6">
 					<ul class="additional_links">
-						<li><a href="#0">Terms and conditions</a></li>
-						<li><a href="#0">Privacy</a></li>
-						<li><span>© 2020 Allaia</span></li>
+						<li><a href="#0">Terminos y condiciones</a></li>
+						<li><span>© 2023</span></li>
 					</ul>
 				</div>
 			</div>
