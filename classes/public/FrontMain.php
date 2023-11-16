@@ -191,34 +191,28 @@
 		<!-- ================================== -->
         <!-- Promociones -->
         <!-- ================================== -->
-        <div class="">
-			<h2>Promociones</h2>
-		</div>
-		<div class="owl-carousel owl-theme products_carousel owl-loaded owl-drag">
-				
-				<!-- /item -->
-				
-				<!-- /item -->
-				
-				<!-- /item -->
-				
-				<!-- /item -->
-				
-				<!-- /item -->
-			<div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-300px, 0px, 0px); transition: all 0.25s ease 0s; width: 1500px;"><div class="owl-item" style="width: 290px; margin-right: 10px;"><div class="item">
+		<div class="container margin_60_35">
+			<div class="">
+				<h2 style="text-align: left; color: #A5A5A5">Promociones</h2>
+			</div>
+			<div class="row small-gutters">
+				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
-						<span class="ribbon new">New</span>
 						<figure>
+							<span class="ribbon off">-30%</span>
 							<a href="product-detail-1.html">
-								<img class="owl-lazy" src="../../assets-front/img/products/shoes/4.jpg" data-src="../../assets-front/img/products/shoes/4.jpg" alt="" style="opacity: 1;">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/1.jpg" data-src="../../assets-front/img/products/shoes/1.jpg" alt="" data-was-processed="true">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/1_b.jpg" data-src="../../assets-front/img/products/shoes/1_b.jpg" alt="" data-was-processed="true">
 							</a>
+							<div data-countdown="2019/05/15" class="countdown">00D 00:00:00</div>
 						</figure>
 						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
 						<a href="product-detail-1.html">
-							<h3>ACG React Terra</h3>
+							<h3>Armor Air x Fear</h3>
 						</a>
 						<div class="price_box">
-							<span class="new_price">$110.00</span>
+							<span class="new_price">$48.00</span>
+							<span class="old_price">$60.00</span>
 						</div>
 						<ul>
 							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
@@ -227,61 +221,21 @@
 						</ul>
 					</div>
 					<!-- /grid_item -->
-				</div></div><div class="owl-item active" style="width: 290px; margin-right: 10px;"><div class="item">
-					<div class="grid_item">
-						<span class="ribbon new">New</span>
-						<figure>
-							<a href="product-detail-1.html">
-								<img class="owl-lazy" src="../../assets-front/img/products/shoes/5.jpg" data-src="../../assets-front/img/products/shoes/5.jpg" alt="" style="opacity: 1;">
-							</a>
-						</figure>
-						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-						<a href="product-detail-1.html">
-							<h3>Air Zoom Alpha</h3>
-						</a>
-						<div class="price_box">
-							<span class="new_price">$140.00</span>
-						</div>
-						<ul>
-							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-						</ul>
-					</div>
-					<!-- /grid_item -->
-				</div></div><div class="owl-item active" style="width: 290px; margin-right: 10px;"><div class="item">
-					<div class="grid_item">
-						<span class="ribbon hot">Hot</span>
-						<figure>
-							<a href="product-detail-1.html">
-								<img class="owl-lazy" src="../../assets-front/img/products/shoes/8.jpg" data-src="../../assets-front/img/products/shoes/8.jpg" alt="" style="opacity: 1;">
-							</a>
-						</figure>
-						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-						<a href="product-detail-1.html">
-							<h3>Air Color 720</h3>
-						</a>
-						<div class="price_box">
-							<span class="new_price">$120.00</span>
-						</div>
-						<ul>
-							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-						</ul>
-					</div>
-					<!-- /grid_item -->
-				</div></div><div class="owl-item active" style="width: 290px; margin-right: 10px;"><div class="item">
+				</div>
+				<!-- /col -->
+				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
 						<span class="ribbon off">-30%</span>
 						<figure>
 							<a href="product-detail-1.html">
-								<img class="owl-lazy" src="../../assets-front/img/products/shoes/2.jpg" data-src="../../assets-front/img/products/shoes/2.jpg" alt="" style="opacity: 1;">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/2.jpg" data-src="../../assets-front/img/products/shoes/2.jpg" alt="" data-was-processed="true">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/2_b.jpg" data-src="../../assets-front/img/products/shoes/2_b.jpg" alt="" data-was-processed="true">
 							</a>
+							<div data-countdown="2019/05/10" class="countdown">00D 00:00:00</div>
 						</figure>
 						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
 						<a href="product-detail-1.html">
-							<h3>Okwahn II</h3>
+							<h3>Armor Okwahn II</h3>
 						</a>
 						<div class="price_box">
 							<span class="new_price">$90.00</span>
@@ -294,17 +248,21 @@
 						</ul>
 					</div>
 					<!-- /grid_item -->
-				</div></div><div class="owl-item active" style="width: 290px; margin-right: 10px;"><div class="item">
+				</div>
+				<!-- /col -->
+				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
 						<span class="ribbon off">-50%</span>
 						<figure>
 							<a href="product-detail-1.html">
-								<img class="owl-lazy" src="../../assets-front/img/products/shoes/3.jpg" data-src="../../assets-front/img/products/shoes/3.jpg" alt="" style="opacity: 1;">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/3.jpg" data-src="../../assets-front/img/products/shoes/3.jpg" alt="" data-was-processed="true">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/3_b.jpg" data-src="../../assets-front/img/products/shoes/3_b.jpg" alt="" data-was-processed="true">
 							</a>
+							<div data-countdown="2019/05/21" class="countdown">00D 00:00:00</div>
 						</figure>
 						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
 						<a href="product-detail-1.html">
-							<h3>Air Wildwood ACG</h3>
+							<h3>Armor Air Wildwood ACG</h3>
 						</a>
 						<div class="price_box">
 							<span class="new_price">$75.00</span>
@@ -317,7 +275,35 @@
 						</ul>
 					</div>
 					<!-- /grid_item -->
-				</div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="ti-angle-left"></i></button><button type="button" role="presentation" class="owl-next disabled"><i class="ti-angle-right"></i></button></div><div class="owl-dots disabled"></div></div>
+				</div>
+				<!-- /col -->
+				<div class="col-6 col-md-4 col-xl-3">
+					<div class="grid_item">
+						<span class="ribbon new">New</span>
+						<figure>
+							<a href="product-detail-1.html">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/4.jpg" data-src="../../assets-front/img/products/shoes/4.jpg" alt="" data-was-processed="true">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/4_b.jpg" data-src="../../assets-front/img/products/shoes/4_b.jpg" alt="" data-was-processed="true">
+							</a>
+						</figure>
+						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+						<a href="product-detail-1.html">
+							<h3>Armor ACG React Terra</h3>
+						</a>
+						<div class="price_box">
+							<span class="new_price">$110.00</span>
+						</div>
+						<ul>
+							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
+							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+						</ul>
+					</div>
+					<!-- /grid_item -->
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
 		<!-- /container -->
         <!-- ================================== -->
         <!-- Fin Promociones -->
@@ -326,34 +312,28 @@
         <!-- ================================== -->
         <!-- Mas vendidos -->
         <!-- ================================== -->
-        <div class="">
-			<h2>Mas vendidos</h2>
-		</div>
-		<div class="owl-carousel owl-theme products_carousel owl-loaded owl-drag">
-				
-				<!-- /item -->
-				
-				<!-- /item -->
-				
-				<!-- /item -->
-				
-				<!-- /item -->
-				
-				<!-- /item -->
-			<div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-300px, 0px, 0px); transition: all 0.25s ease 0s; width: 1500px;"><div class="owl-item" style="width: 290px; margin-right: 10px;"><div class="item">
+        <div class="container">
+			<div class="">
+				<h2 style="text-align: left; color: #A5A5A5">Mas vendidos</h2>
+			</div>
+			<div class="row small-gutters">
+				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
-						<span class="ribbon new">New</span>
 						<figure>
+							<span class="ribbon off">-30%</span>
 							<a href="product-detail-1.html">
-								<img class="owl-lazy" src="../../assets-front/img/products/shoes/4.jpg" data-src="../../assets-front/img/products/shoes/4.jpg" alt="" style="opacity: 1;">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/1.jpg" data-src="../../assets-front/img/products/shoes/1.jpg" alt="" data-was-processed="true">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/1_b.jpg" data-src="../../assets-front/img/products/shoes/1_b.jpg" alt="" data-was-processed="true">
 							</a>
+							<div data-countdown="2019/05/15" class="countdown">00D 00:00:00</div>
 						</figure>
 						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
 						<a href="product-detail-1.html">
-							<h3>ACG React Terra</h3>
+							<h3>Armor Air x Fear</h3>
 						</a>
 						<div class="price_box">
-							<span class="new_price">$110.00</span>
+							<span class="new_price">$48.00</span>
+							<span class="old_price">$60.00</span>
 						</div>
 						<ul>
 							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
@@ -362,61 +342,21 @@
 						</ul>
 					</div>
 					<!-- /grid_item -->
-				</div></div><div class="owl-item active" style="width: 290px; margin-right: 10px;"><div class="item">
-					<div class="grid_item">
-						<span class="ribbon new">New</span>
-						<figure>
-							<a href="product-detail-1.html">
-								<img class="owl-lazy" src="../../assets-front/img/products/shoes/5.jpg" data-src="../../assets-front/img/products/shoes/5.jpg" alt="" style="opacity: 1;">
-							</a>
-						</figure>
-						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-						<a href="product-detail-1.html">
-							<h3>Air Zoom Alpha</h3>
-						</a>
-						<div class="price_box">
-							<span class="new_price">$140.00</span>
-						</div>
-						<ul>
-							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-						</ul>
-					</div>
-					<!-- /grid_item -->
-				</div></div><div class="owl-item active" style="width: 290px; margin-right: 10px;"><div class="item">
-					<div class="grid_item">
-						<span class="ribbon hot">Hot</span>
-						<figure>
-							<a href="product-detail-1.html">
-								<img class="owl-lazy" src="../../assets-front/img/products/shoes/8.jpg" data-src="../../assets-front/img/products/shoes/8.jpg" alt="" style="opacity: 1;">
-							</a>
-						</figure>
-						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-						<a href="product-detail-1.html">
-							<h3>Air Color 720</h3>
-						</a>
-						<div class="price_box">
-							<span class="new_price">$120.00</span>
-						</div>
-						<ul>
-							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-						</ul>
-					</div>
-					<!-- /grid_item -->
-				</div></div><div class="owl-item active" style="width: 290px; margin-right: 10px;"><div class="item">
+				</div>
+				<!-- /col -->
+				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
 						<span class="ribbon off">-30%</span>
 						<figure>
 							<a href="product-detail-1.html">
-								<img class="owl-lazy" src="../../assets-front/img/products/shoes/2.jpg" data-src="../../assets-front/img/products/shoes/2.jpg" alt="" style="opacity: 1;">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/2.jpg" data-src="../../assets-front/img/products/shoes/2.jpg" alt="" data-was-processed="true">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/2_b.jpg" data-src="../../assets-front/img/products/shoes/2_b.jpg" alt="" data-was-processed="true">
 							</a>
+							<div data-countdown="2019/05/10" class="countdown">00D 00:00:00</div>
 						</figure>
 						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
 						<a href="product-detail-1.html">
-							<h3>Okwahn II</h3>
+							<h3>Armor Okwahn II</h3>
 						</a>
 						<div class="price_box">
 							<span class="new_price">$90.00</span>
@@ -429,17 +369,21 @@
 						</ul>
 					</div>
 					<!-- /grid_item -->
-				</div></div><div class="owl-item active" style="width: 290px; margin-right: 10px;"><div class="item">
+				</div>
+				<!-- /col -->
+				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
 						<span class="ribbon off">-50%</span>
 						<figure>
 							<a href="product-detail-1.html">
-								<img class="owl-lazy" src="../../assets-front/img/products/shoes/3.jpg" data-src="../../assets-front/img/products/shoes/3.jpg" alt="" style="opacity: 1;">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/3.jpg" data-src="../../assets-front/img/products/shoes/3.jpg" alt="" data-was-processed="true">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/3_b.jpg" data-src="../../assets-front/img/products/shoes/3_b.jpg" alt="" data-was-processed="true">
 							</a>
+							<div data-countdown="2019/05/21" class="countdown">00D 00:00:00</div>
 						</figure>
 						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
 						<a href="product-detail-1.html">
-							<h3>Air Wildwood ACG</h3>
+							<h3>Armor Air Wildwood ACG</h3>
 						</a>
 						<div class="price_box">
 							<span class="new_price">$75.00</span>
@@ -452,13 +396,46 @@
 						</ul>
 					</div>
 					<!-- /grid_item -->
-				</div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="ti-angle-left"></i></button><button type="button" role="presentation" class="owl-next disabled"><i class="ti-angle-right"></i></button></div><div class="owl-dots disabled"></div></div>
+				</div>
+				<!-- /col -->
+				<div class="col-6 col-md-4 col-xl-3">
+					<div class="grid_item">
+						<span class="ribbon new">New</span>
+						<figure>
+							<a href="product-detail-1.html">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/4.jpg" data-src="../../assets-front/img/products/shoes/4.jpg" alt="" data-was-processed="true">
+								<img class="img-fluid lazy loaded" src="../../assets-front/img/products/shoes/4_b.jpg" data-src="../../assets-front/img/products/shoes/4_b.jpg" alt="" data-was-processed="true">
+							</a>
+						</figure>
+						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+						<a href="product-detail-1.html">
+							<h3>Armor ACG React Terra</h3>
+						</a>
+						<div class="price_box">
+							<span class="new_price">$110.00</span>
+						</div>
+						<ul>
+							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
+							<li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+						</ul>
+					</div>
+					<!-- /grid_item -->
+				</div>
+			</div>
+			<!-- /row -->
+			</div>
+		</div>
 		<!-- /container -->
+		<br><br>
         <!-- ================================== -->
         <!-- Fin Mas vendidos -->
         <!-- ================================== -->		
+		<!-- ================================== -->
+        <!-- Marcas -->
+        <!-- ================================== -->
         <div class="bg_gray">
-			<div class="container margin_30">
+			<div class="container">
 				<div id="brands" class="owl-carousel owl-theme">
 					<div class="item">
 						<a href="#0"><img src="../../assets-front/img/brands/placeholder_brands.png" data-src="../../assets-front/img/brands/logo-BSN.png" alt="" class="owl-lazy"></a>
@@ -485,7 +462,10 @@
 			</div><!-- /container -->
 		</div>
 		<!-- /bg_gray -->
-
+		<!-- ================================== -->
+        <!-- Fin marcas -->
+        <!-- ================================== -->
+		<br><br>
 		<!-- ================================== -->
         <!-- Envios,Consultar,Garantia -->
         <!-- ================================== -->
@@ -521,12 +501,13 @@
 		<!-- ================================== -->
         <!-- Fin Envios,Consultar,Garantia -->
         <!-- ================================== -->
+		<br><br>
 	</main>
 
 	<!-- ================================== -->
 	<!-- footer -->
 	<!-- ================================== -->
-	<footer class="revealed">
+	<footer class="">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
