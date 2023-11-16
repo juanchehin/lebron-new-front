@@ -1,0 +1,572 @@
+/** Ing. Claudio Barrera **/
+var _current_class = document.querySelector('base').getAttribute('data-class');
+var _modal = '#modal-' + _current_class;
+var _ajax;
+if ( $.fn.select2 )
+{
+    function make_select2(select, json_opts)
+    {
+        var action = select.data('action');
+        let min_length = select.attr("minlength");
+        let opts = {
+            'tags': true,
+            'allowClear': !select.attr('multiple'),
+            'placeholder': {},
+            'minimumInputLength': (min_length || 3),
+            'language': 'es'
+        };
+        if ( !parseInt(min_length) )
+        {
+            opts["placeholder"] = "Seleccionar";
+        }
+        if ( action )
+        {
+            opts.ajax = {
+                'url': action,
+                'dataType': 'json',
+                'delay': 250,
+                'type': 'post',
+                'processResults': function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                'cache': true
+            };
+        }
+        let options = Object.assign(opts, json_opts);
+        $(select).select2(options);
+    }
+
+    $.fn.selectar = function (json_opts) {
+        make_select2(this, json_opts);
+    };
+}
+
+if ( $.fn.datepicker )
+{
+    $.datepicker.regional['es'] = {
+        'closeText': 'Cerrar',
+        'prevText': '<Ant',
+        'nextText': 'Sig>',
+        'currentText': 'Hoy',
+        'monthNames': ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        'monthNamesShort': ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        'dayNames': ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+        'dayNamesShort': ['Dom', 'Lun', 'Mar', 'Mie', 'Juv', 'Vie', 'Sab'],
+        'dayNamesMin': ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+        'weekHeader': 'Sm',
+        'dateFormat': 'dd/mm/yy',
+        'changeMonth': true,
+        'changeYear': true,
+        'yearRange': '-100:-18',
+        'defaultDate': '31/12/1999',
+        'firstDay': 1,
+        'isRTL': false,
+        'showMonthAfterYear': false,
+        'yearSuffix': ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+
+    $.fn.calendario = function (opts) {
+        this.attr('maxLength', 0).on('keypress keyup', function () {
+            return false;
+        }).datepicker(opts);
+    };
+}
+
+$.fn.numeric = function (point) {
+    this.mask('#0', {'reverse': true});
+};
+
+$.fn.decimal = function ($p) {
+    var input = this;
+    this.addClass('idf').css("text-align", "right");
+    if ( $p && $p.search(/(\,|\.)/) >= 0 )
+    {
+        this.onlynumber($p);
+        return;
+    }
+    this.mask('00000000.00', {'reverse': true, 'maxlength': 8});
+};
+
+$.fn.scrollToMe = function () {
+    var x = $(this).offset().top - 100;
+    $('html,body').animate({'scrollTop': x}, 400);
+}
+
+function gen_random(longitud)
+{
+    var caracteres = "abcdefghijkmnpqrtuvwxyzABCDEFGHIJKLMNPQRTUVWXYZ2346789";
+    var _random = "ya_";
+    for (i = 0; i < longitud; i++)
+    {
+        _random += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+    }
+    return _random;
+}
+
+$(function () {
+    const alertaBloqMayus = $('<span class="alerta-mayuscula text-warning"></span>');
+
+    $('input[type="password"]').on('keypress focus', function (e) {
+        var par = $(this);
+        kc = e.keyCode ? e.keyCode : e.which;
+        sk = e.shiftKey ? e.shiftKey : (kc === 16);
+        if ( ((kc >= 65 && kc <= 90) && !sk) || ((kc >= 97 && kc <= 122) && sk) )
+        {
+            par.closest('.form-group').append(alertaBloqMayus.html("<i class='fa fa-warning'></i> May&uacute;sculas activadas"));
+        }
+        else
+        {
+            par.closest('.form-group').find(alertaBloqMayus).remove();
+        }
+    });
+
+    if ( $.fn.calendario )
+    {
+        $('.datepicker').calendario();
+    }
+    //--
+    $('.string').mask('Z', {translation: {'Z': {pattern: /[a-zA-ZÁáÉéÍíÓóÚúÑñ\s+]/, recursive: true}}});
+    /*$('.string').on('keypress',function (e)
+     {
+     return soloLetras(e);
+     });*/
+
+    $('.integer,input[type="tel"]:not(.idf)').mask('#0000000', {'reverse': true});
+    $('.alphanumeric').mask('Z', {translation: {'Z': {pattern: /[a-zA-Z0-9ÁáÉéÍíÓóÚúÑñ\s+]/, recursive: true}}});
+    //--
+    $('.modal').on('shown.bs.modal', function () {
+        $(this).find('.modal-body input:not(.nf):visible:first').focus();
+    }).on('hide.bs.modal', function () {
+        $(this).find('input, select, textarea').val("");
+    }).on('show.bs.modal', center_modal);
+    ;
+
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+function center_modal(block)
+{
+    $(this).css('display', 'block');
+    var $dialog = $(this).find(".modal-dialog"),
+        offset = ($(window).height() - $dialog.height()) / 2,
+        bottomMargin = parseInt($dialog.css('marginBottom'), 10);
+    if ( offset < bottomMargin )
+    {
+        offset = bottomMargin;
+    }
+    $dialog.css("margin-top", offset);
+}
+
+$.toggleShowPassword = function (options) {
+    var settings = $.extend({
+        field: "#password",
+        control: "#toggle_show_password",
+    }, options);
+
+    var control = $(settings.control);
+    var field = $(settings.field);
+
+    control.bind('click', function () {
+        if ( field.attr('type') === 'password' )
+        {
+            field.attr('type', 'text');
+            this.text = 'Ocultar';
+        }
+        else
+        {
+            field.attr('type', 'password');
+            this.text = 'Mostrar';
+        }
+    })
+};
+
+var jdialog = function (mensaje, _callback) {
+    bootbox.alert({
+        "size": "small",
+        "closeButton": true,
+        "message": mensaje,
+        "onEscape": function () {
+            bootbox.hideAll('hide');
+        },
+        "callback": function () {
+            if ( typeof _callback === "function" )
+            {
+                _callback();
+            }
+        },
+        "buttons": {
+            'ok': {
+                label: 'Aceptar',
+                className: 'btn-primary btn-sm'
+            }
+        }
+    });
+};
+
+var jconfirm = function (callback, aviso) {
+    var mensaje = aviso ? aviso : '<span class="text-danger">Eliminar datos. ¿Realmente desea continuar?</span>';
+    var options = {
+        message: mensaje,
+        "size": "small",
+        title: '<span class="small text-uppercase">Confirmar acci&oacute;n</span>'
+    };
+    options.buttons = {
+        'confirm': {
+            label: "Aceptar",
+            className: "btn-danger",
+            callback: function () {
+                callback(true);
+            }
+        },
+        'cancel': {
+            label: "Cancelar",
+            className: "btn-default",
+            callback: function () {
+                callback(false);
+            }
+        }
+    };
+
+    bootbox.dialog(options);
+};
+
+var jconfirm_compra_quimico = function (callback, aviso) {
+    var mensaje = aviso ? aviso : '<span class="text-warning">Confirmar abono de pago. ¿Realmente desea continuar?</span>';
+    var options = {
+        message: mensaje,
+        "size": "small",
+        title: '<span class="small text-uppercase">Confirmar acci&oacute;n</span>'
+    };
+    options.buttons = {
+        'confirm': {
+            label: "Aceptar",
+            className: "btn-danger",
+            callback: function () {
+                callback(true);
+            }
+        },
+        'cancel': {
+            label: "Cancelar",
+            className: "btn-default",
+            callback: function () {
+                callback(false);
+            }
+        }
+    };
+
+    bootbox.dialog(options);
+};
+
+function submit_form(form, callback)
+{
+    var _form = form ? $(form) : $('form');
+    var _data = new FormData(_form[0]);
+    var _button = _form.find('button[type="submit"],.send');
+    $.ajax({
+        'url': _form.attr('action'),
+        'type': 'post',
+        'dataType': 'json',
+        'data': _data,
+        'contentType': false,
+        'processData': false,
+        'beforeSend': function () {
+            set_notice();
+            _button.attr('disabled', true).prepend('<i class="fa fa-spin fa-spinner"></i> ');
+        },
+        'error': function (res) {
+            if ( res.responseText )
+            {
+                jdialog(res.responseText);
+            }
+            _button.removeAttr("disabled").find('.fa-spin').remove();
+        },
+        'success': function (data) {
+            if ( data.error || data.ok )
+            {
+                _button.removeAttr("disabled").find('.fa-spin').remove();
+            }
+            //--
+            if ( data.error )
+            {
+                if ( data.field )
+                {
+                    set_notice(data.field, data.error);
+                }
+                else
+                {
+                    jdialog(data.error, function () {
+                        $('[name="' + data.field + '"]').select();
+                    });
+                }
+                return;
+            }
+
+            if ( data.notice )
+            {
+                jdialog(data.notice, function () {
+                    _submit_callback(data, callback);
+                });
+                return;
+            }
+            _submit_callback(data, callback)
+        }
+    });
+    return false;
+}
+
+function _submit_callback(response, c_back)
+{
+    if ( response.location )
+    {
+        location.href = response.location;
+        return;
+    }
+
+    if ( response.success )
+    {
+        location.reload();
+        return;
+    }
+    if ( typeof c_back === "function" )
+    {
+        c_back(response);
+    }
+    //return response;
+}
+
+function set_notice(control, msg)
+{
+    const res_info = '.res-info';
+    //$(res_info).remove();
+    $('[rel="tooltip"]').removeAttr("data-toggle data-original-title rel").unbind("tooltip");
+    if ( !control || !msg )
+    {
+        return;
+    }
+    var _field = $('[name="' + control + '"]');
+    //const span = $("<span class='" + res_info.replace(/^./, "") + "'></span>");
+    //span.css({'font-size': '13px','width':'auto','line-height':'14px'}).html(msg);
+    _field.attr({'rel': 'tooltip', 'data-toggle': 'tooltip', 'data-original-title': msg.replace(/(<([^>]+)>)/ig, "")}).tooltip();
+    /*if ( !_field.parent().find(span).length )
+    {
+        _field.parent().append(span);
+    }*/
+    _field.focus().select();
+}
+
+function before_send(container)
+{
+    var divLoad = $('<div id="dd-loading-container"></div>');
+    divLoad.css({
+        "position": container ? "absolute" : "fixed",
+        "font-size": '25px',
+        "font-weight": "600",
+        "text-align": "center",
+        "line-height": !container ? "100vh" : $(container).outerHeight() + "px",
+        "color": "#4d4848",
+        "left": 0,
+        "top": 0,
+        "width": '100%',
+        "height": "100%",
+        "z-index": '8000',
+        "background-color": "rgba(0,0,0,0.4)"
+    }).html('<span style="border-radius:10px;padding:45px;background:#fff"><i class="fa fa-spin fa-spinner"></i> Procesando...</span>');
+
+    if ( !container )
+    {
+        container = "body";
+    }
+
+    if ( !$('#dd-loading-container').length )
+    {
+        $(container).prepend(divLoad.focus());
+        $('body').css('overflow-y', "hidden");
+    }
+    else
+    {
+        $('#dd-loading-container').remove();
+        $('body').css('overflow-y', "auto");
+    }
+}
+
+function setCookie(cname, cvalue, exdays)
+{
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname)
+{
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++)
+    {
+        var c = ca[i];
+        while ( c.charAt(0) === ' ' )
+        {
+            c = c.substring(1);
+        }
+        if ( c.indexOf(name) === 0 )
+        {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function daysInMonth(month, year)
+{
+    return new Date(year, month, 0).getDate();
+}
+
+function add_days(fecha, dias)
+{
+    //input date format dd/mm/yyyy o dd-mm-yyyy
+    tt = fecha.split(/[\/,\-]/);
+    var date = new Date(tt[2] + "-" + tt[1] + "-" + tt[0]);
+    var newdate = new Date(date);
+    newdate.setDate(newdate.getDate() + dias);
+
+    var dd = newdate.getDate();
+    var mm = newdate.getMonth() + 1;
+    var y = newdate.getFullYear();
+
+    var string_date = pad(dd, 2) + '/' + pad(mm, 2) + '/' + y;
+    return string_date;
+}
+
+function pad(n, length, pad)
+{
+    var _pad = pad ? pad : "0";
+    var value = n.toString();
+    while ( value.length < length )
+    {
+        value = _pad + value;
+    }
+    return value;
+}
+
+function setLS(key, value)
+{
+    return localStorage.setItem(key, value);
+}
+
+function getLS(key)
+{
+    return localStorage.getItem(key);
+}
+
+function select_file(ifile)
+{
+    const MAX_SIZE = 1024;
+    var inputType = $(ifile).data('type'); //1:imagen, 2:archivo (documento)
+    if ( inputType && !$(ifile).attr('multiple') )
+    {
+        //obtenemos un array con los datos del archivo
+        var file = $(ifile)[0].files[0];
+        //obtenemos el nombre del archivo
+        var fileName = file.name;
+        //obtenemos la extensiÃƒÂ³n del archivo
+        var fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1).toLocaleLowerCase();
+        //obtenemos el tamaÃƒÂ±o del archivo
+        var fileSize = Math.round(file.size / 1024);
+        //obtenemos el tipo de archivo image/png ejemplo
+        var msj = null;
+        //mensaje con la informaciÃƒÂ³n del archivo
+        var extension = ['jpeg', 'jpg', 'png', 'gif'];
+        if ( inputType > 1 )
+        {
+            extension = ['doc', 'docx', 'pdf', 'odf'];
+        }
+
+        if ( $.inArray(fileExtension, extension) < 0 )
+        {
+            msj = 'El archivo debe ser <i>' + extension.join(" / ") + '</i>';
+        }
+        else if ( fileSize > MAX_SIZE )
+        {
+            msj = 'El tama&ntilde;o del archivo es mayor a ' + (MAX_SIZE / 1024) + ' MB (' + MAX_SIZE + 'KB)';
+        }
+
+        if ( msj )
+        {
+            jdialog('Archivo no v&aacute;lido. <b>' + msj + '</b>', true);
+            $(ifile).val(null);
+            return;
+        }
+        //div.show().html("<span style='color:blue'> Imagen: " + fileName + ", Tama&ntilde;o: " + fileSize + " KB.</span>");
+        if ( inputType < 2 )
+        {
+            vista_previa(ifile);
+            return true;
+        }
+    }
+}
+
+function vista_previa(input)
+{
+    if ( input.files && input.files[0] )
+    {
+        var reader = new FileReader();
+        var PREVIEW = $(input).parent().find('.preview-image');
+        reader.onload = function (e) {
+            var _html = '<img src="' + e.target.result + '" alt="imagen">';
+            if ( !PREVIEW.length )
+            {
+                $(input).after($('<div class="preview-image">' + _html + '</div>'));
+            }
+            else
+            {
+                PREVIEW.html(_html);
+            }
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function polling(ajax_url, cbk)
+{
+    let ajax = new XMLHttpRequest();
+    let json = {};
+    ajax.onreadystatechange = function () {
+        if ( this.readyState === 4 ) //&& this.status === 200 )
+        {
+            if ( this.status === 200 )
+            {
+                try
+                {
+                    json = JSON.parse(this.responseText);
+                } catch ( err )
+                {
+                    polling(ajax_url, cbk);
+                    return;
+                }
+                if ( typeof cbk === "function" )
+                {
+                    cbk(json);
+                }
+                polling(ajax_url, cbk);
+            }
+            else
+            {
+                polling(ajax_url, cbk);
+            }
+        }
+    };
+    ajax.open('GET', ajax_url, true);
+    ajax.send();
+}
+
+function paginate(ref)
+{
+    var page = ref.getAttribute('href').replace(/.*\=/g, '');
+    ref.setAttribute('href', 'javascript:void(0)');
+    get_rows(page);
+    return false;
+}

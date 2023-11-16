@@ -1,0 +1,184 @@
+<?php
+
+class PagoControl
+{
+    private static $_cuentas = array();
+
+    public static function pagoForm($modal = true)
+    {
+        $json = ($modal ?: $_POST['mdl']);
+        static::cuentas();
+        ob_start();
+        ?>
+        <style>
+            .linea-pago {
+                margin-bottom: 3px;
+            }
+
+            .linea-pago .input-group-addon {
+                margin-top: 0;
+                padding: 0 !important;
+            }
+
+            .linea-pago select, .linea-pago input {
+                font-size: 13px;
+            }
+        </style>
+        <label style="margin:0; text-align: right">$ <span id="pc-spn-total"></span></label>
+        <div id="dv-lineas-pago" style="min-height:200px;overflow-y:auto"></div>
+        <script>
+            dvLineasPago = document.getElementById('dv-lineas-pago');
+            labelMontoCompra = document.getElementById('pc-spn-total');
+            total_pago = 0;
+            var pc_pagos = {}, pc_cuentas = <?=json_encode(static::$_cuentas)?>;
+
+            function pg_total(eval)
+            {
+                //get_cuentas();
+                if ( eval )
+                {
+                    total_pago = parseFloat(labelMontoCompra.innerText);
+                }
+                else
+                {
+                    labelMontoCompra.innerText = total_pago;
+                }
+                return dvLineasPago.querySelectorAll('[id^="btn-"]').length;
+            }
+
+            function opcion_pago(id_cuenta, importe)
+            {
+                id = new Date().getTime();
+                pg_total(true);
+                line = `<div class="linea-pago" id='dv-${id}'>`;
+                line += `<div class='input-group-addon' id="sc-group-${id}">`;
+                //line += `<label for="cuenta-${id}">Cuenta <i class="required"></i></label>`;
+                line += `<select id="cuenta-${id}" rel="cuenta" name="c-${id}" class='form-control' required>`;
+                line += "<option value=''>Medio</option>";
+                for (id_cta in pc_cuentas)
+                {
+                    if ( pc_pagos[id_cta] )
+                    {
+                        //continue;
+                    }
+                    line += `<option value='${id_cta}' ${(id_cta === id_cuenta) ? "selected" : ""}>${pc_cuentas[id_cta]}</option>`;
+                }
+                line += `</select>`;
+                line += `</div>`;
+                line += `<div class='input-group-addon' style="width: .4%;">`;
+                //line += `<label for="monto-${id}">Monto <i class="required"></i></label>`;
+                line += `<input type="tel" name="m-${id}" value="${importe}" class="form-control" id="monto-${id}" placeholder="Monto" disabled required>`;
+                line += `</div>`;
+                line += `<div class="input-group-addon" style="padding-top:26px;width:.04%;text-align: right">`;
+                line += `<button type="button" id="btn-${id}" class="btn btn-primary" title="Aceptar"><i class="fa fa-check"></i></button>`;
+                line += `</div>`;
+                line += `</div>`;
+                dvLineasPago.insertAdjacentHTML("beforeend", line);
+                cuentaSelect = document.getElementById(`cuenta-${id}`);
+                montoInput = document.getElementById(`monto-${id}`);
+                $(montoInput).numeric(".");
+
+                cuentaSelect.onchange = function () {
+                    if ( !this.value )
+                    {
+                        montoInput.setAttribute("disabled", true);
+                        return;
+                    }
+                    montoInput.removeAttribute("disabled");
+                    montoInput.focus();
+                };
+                if ( (btn = document.getElementById(`btn-${id}`)) )
+                {
+                    btn.onclick = function () {
+                        //cuentaSelect.value = id_cuenta
+                        set_notice();
+                        if ( !(cuenta = cuentaSelect.value) )
+                        {
+                            set_notice(`c-${id}`, "Seleccionar Cuenta");
+                            return;
+                        }
+                        //--
+                        if ( !(monto = montoInput.value) )
+                        {
+                            set_notice(`m-${id}`, "Indicar el monto");
+                            return;
+                        }
+                        //--
+                        if ( !pc_pagos[id + "&" + cuenta] )
+                        {
+                            total_pago = parseFloat(labelMontoCompra.innerText);
+                            in_monto = parseFloat(monto);
+                            if ( in_monto > total_pago )
+                            {
+                                in_monto = total_pago;
+                            }
+                            montoInput.value = in_monto;
+                            pc_pagos[id + "&" + cuenta] = in_monto;
+                            total_pago -= in_monto;
+                            pg_total();
+                            /*--*/
+                            cuentaSelect.setAttribute("disabled", true);
+                            montoInput.setAttribute("disabled", true);
+                            btn.innerHTML = `<i class="fa fa-trash"></i>`;
+                            btn.setAttribute("rel", id.toString().replace(/[^\d+]/, ""));
+                            btn.setAttribute("onclick", `quitar(${btn.getAttribute("rel")})`);
+                            btn.id = "";
+                            btn.classList.remove("btn-success");
+                            btn.classList.add("btn-danger");
+                            if ( !id_cuenta && total_pago > 0 )
+                            {
+                                opcion_pago();
+                            }
+                        }
+                    };
+                    if ( total_pago <= 0 && !id_cuenta )
+                    {
+                        quitar(id);
+                    }
+
+                    if ( id_cuenta && importe )
+                    {
+                        btn.click();
+                    }
+                }
+            }
+
+            function quitar($id)
+            {
+                cuenta = document.getElementById(`cuenta-${$id}`).value;
+                if ( (sJson = pc_pagos[$id + "&" + cuenta]) )
+                {
+                    total_pago += parseFloat(sJson);
+                    rtn = pg_total();
+                    delete pc_pagos[$id + "&" + cuenta];
+                }
+                document.getElementById(`dv-${$id}`).remove();
+                if ( (total_pago > 0) && !rtn )
+                {
+                    opcion_pago();
+                }
+            }
+
+            opcion_pago();
+        </script>
+        <?php
+        $block = ob_get_clean();
+        if ( $json )
+        {
+            HArray::jsonResponse('body', $block);
+        }
+        return $block;
+    }
+
+    private static function cuentas()
+    {
+        $excluir = json_decode($_POST['exc'], true);
+        //$excluir[] = 0;
+        $cuentas = Concepto::selectRaw("id_concepto AS id, `concepto` AS label")->whereRaw("`categoria`='disponibilidad' AND `id_concepto` NOT IN ('" . implode("','", $excluir) . "')")->get();
+        $result = array();
+        foreach ($cuentas as $cuenta)
+        {
+            static::$_cuentas[$cuenta->id] = mb_strtoupper($cuenta->label);
+        }
+    }
+}

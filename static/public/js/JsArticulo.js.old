@@ -1,0 +1,102 @@
+let attr_opt = {};
+let labelPrecio;
+let labelCantidad;
+attr_opt["cantidad"] = 1;
+
+function get_parent($elm, $prnt = true)
+{
+    let parent = $elm.form;
+    labelPrecio = document.getElementById('precio-' + parent.id);
+    labelCantidad = document.getElementById('sp-cantidad-' + parent.id);
+    return $prnt ? parent : parent.id;
+}
+
+function change_opt($dd)
+{
+    let option = $dd.options[$dd.selectedIndex];
+    let parent = get_parent($dd);
+    //json_opt = JSON.parse(option.value);
+    parent.setAttribute("rel", option.innerText.replace(/.+\((\d+)\)/gi, "$1"));
+    if ( option.value )
+    {
+        attr_opt["cup"] = option.value;
+    }
+    attr_opt["sabor"] = option.innerText.replace(/\(.+$/gi, "");
+    if ( (precio = parseFloat(option.getAttribute("rel"))) > 0 )
+    {
+        attr_opt[parent.id] = precio;
+        labelPrecio.innerHTML = precio.toFixed(2);
+    }
+    labelCantidad.innerText = "1";
+}
+
+function up_down($btn)
+{
+    let parent = get_parent($btn);
+    let cantidad = parseInt(labelCantidad.innerText);
+    if ( !attr_opt[parent.id] )
+    {
+        attr_opt[parent.id] = parseFloat(labelPrecio.innerText);
+    }
+    //--
+    if ( $btn.getAttribute("rel") )
+    {
+        if ( cantidad > 1 )
+        {
+            cantidad--;
+        }
+    }
+    else if ( cantidad < parseInt(parent.getAttribute("rel")) )
+    {
+        cantidad++;
+    }
+    attr_opt["cantidad"] = cantidad;
+    labelPrecio.innerHTML = (attr_opt[parent.id] * cantidad).toFixed(2);
+    labelCantidad.innerHTML = cantidad;
+}
+
+function comprar($me)
+{
+    $parent = get_parent($me);
+    let nombre = $me.getAttribute("rel");
+    if ( (sabor = attr_opt["sabor"]) )
+    {
+        nombre = nombre.replace(/(\|).+$/g, "$1 " + sabor);
+    }
+    attr_opt["nombre"] = nombre;
+    if ( (attr_opt["disponible"] = parseInt($parent.getAttribute("rel"))) < 1 )
+    {
+        jdialog("<span class='text-danger'>Sin stock disponible</span>");
+        return;
+    }
+    attr_opt["subtotal"] = parseFloat(labelPrecio.innerText);
+    attr_opt["directa"] = $me.name;
+    if ( !attr_opt["cup"] )
+    {
+        attr_opt["cup"] = $parent.id;
+    }
+    $me.insertAdjacentHTML("afterbegin", "<i class='fa fa-spin fa-spinner'></i>");
+    $me.setAttribute("disabled", true);
+    fetch("!FrontCart/setItemCart", {
+        "method": "POST",
+        "body": new URLSearchParams(attr_opt)
+    }).then(function (res) {
+        res.json().then(function ($js) {
+            delete attr_opt["cup"];
+            if ( attr_opt.directa )
+            {
+                location.href = "!FrontPayment/pagar?on=1";
+                return;
+            }
+            $me.removeAttribute("disabled");
+            $me.firstElementChild.remove();
+            if ( !(msj = $js["error"]) )
+            {
+                msj = "Artículo agregado a la compra";
+                get_count_cart();
+            }
+            document.getElementById('btn-dwn-' + $parent.id).click();
+            jdialog(msj);
+        });
+    });
+}

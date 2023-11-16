@@ -1,0 +1,14 @@
+{
+    "app_id": "123456",
+    "client_secret": "ijdasifa654",
+    "access_token": "APP_USR-123456",
+    "token_type": "Bearer",
+    "expires_in": 15552000,
+    "scope": "offline_access payments read write",
+    "user_id": 111222,
+    "refresh_token": "TG-abcdefg-123456",
+    "public_key": "APP_USR-55eett",
+    "live_mode": true,
+    "control_expire": "2024-03-14",
+    "encrypt_key": "123456#"
+}

@@ -1,0 +1,236 @@
+[
+    {
+        "id_item": "PRODUCTO",
+        "id_parent": "0",
+        "label": "Productos",
+        "enlace": "articulos",
+        "icono": "fa fa-boxes",
+        "habilitado": 1,
+        "orden": 2
+    },
+    {
+        "id_item": "PRODUCTO",
+        "id_parent": "PRODUCTO",
+        "label": "Productos",
+        "enlace": "articulos",
+        "icono": "fa fa-boxes",
+        "habilitado": 1,
+        "orden": 2
+    },
+    {
+        "id_item": "PRODUCTO_VENCIDOS",
+        "id_parent": "PRODUCTO",
+        "label": "Vencidos",
+        "enlace": "productos-vencidos",
+        "icono": "fa fa-boxes",
+        "habilitado": 1,
+        "orden": 1
+    },
+    {
+        "id_item": "quimicos",
+        "id_parent": "PRODUCTO",
+        "label": "Quimicos",
+        "enlace": "venta-quimicos",
+        "icono": "fas fa-eye-dropper",
+        "habilitado": 1,
+        "orden": 11
+    },
+    {
+        "id_item": "stock",
+        "id_parent": "0",
+        "label": "Stock",
+        "enlace": "log",
+        "icono": "fa fa-cart-plus",
+        "habilitado": 1,
+        "orden": 1
+    },
+    {
+        "id_item": "compra_listado",
+        "id_parent": "stock",
+        "label": "Movimientos",
+        "enlace": "log",
+        "icono": "fa fa-th-list ",
+        "habilitado": 1,
+        "orden": 0
+    },
+    {
+        "id_item": "ingreso",
+        "id_parent": "stock",
+        "label": "Ingreso",
+        "enlace": "stock/ingreso",
+        "icono": "",
+        "habilitado": 1,
+        "orden": 0
+    },
+    {
+        "id_item": "traspaso",
+        "id_parent": "stock",
+        "label": "Traspaso",
+        "enlace": "stock/traspaso",
+        "icono": "",
+        "habilitado": 1,
+        "orden": 0
+    },
+    {
+        "id_item": "sucursal",
+        "id_parent": "0",
+        "label": "Sucursales",
+        "enlace": "sucursales",
+        "icono": "fa fa-home",
+        "habilitado": 1,
+        "orden": 0
+    },
+    {
+        "id_item": "proveedor",
+        "id_parent": "0",
+        "label": "Proveedores",
+        "enlace": "proveedores",
+        "icono": "fa fa-user",
+        "habilitado": 1,
+        "orden": 0
+    },
+    {
+        "id_item": "customers",
+        "id_parent": "0",
+        "label": "Clientes",
+        "enlace": "customers",
+        "icono": "fa fa-address-book",
+        "habilitado": 1,
+        "orden": 0
+    },
+    {
+        "id_item": "categoria",
+        "id_parent": "0",
+        "label": "Categorías",
+        "enlace": "categorias",
+        "icono": "fa fa-th-list",
+        "habilitado": 1,
+        "orden": 1
+    },
+    {
+        "id_item": "venta",
+        "id_parent": "0",
+        "label": "Egresos",
+        "enlace": "ventas",
+        "icono": "fa fa-shopping-cart",
+        "habilitado": 1,
+        "orden": 2
+    },
+    {
+        "id_item": "VENTA_DATOS",
+        "id_parent": "venta",
+        "label": "Registros",
+        "enlace": "ventas",
+        "icono": "fa fa-shopping-cart",
+        "habilitado": 1,
+        "orden": 1
+    },
+    {
+        "id_item": "VENTA_REGISTRAR",
+        "id_parent": "venta",
+        "label": "Registrar",
+        "enlace": "ventas/nuevo",
+        "icono": "fa fa-shopping-cart",
+        "habilitado": 1,
+        "orden": 2
+    },
+    {
+        "id_item": "VENTA_PEDIDOS",
+        "id_parent": "venta",
+        "label": "Pedidos web",
+        "enlace": "ventas/pedidos",
+        "icono": "fa fa-list",
+        "habilitado": 1,
+        "orden": 3
+    },
+    {
+        "id_item": "gestion",
+        "id_parent": "0",
+        "label": "Administración",
+        "enlace": "gestion",
+        "icono": "fa fa-calculator",
+        "habilitado": 1,
+        "orden": 7
+    },
+    {
+        "id_item": "gestion",
+        "id_parent": "gestion",
+        "label": "Administración",
+        "enlace": "gestion",
+        "icono": "fa fa-calculator",
+        "habilitado": 1,
+        "orden": 1
+    },
+    {
+        "id_item": "inversores",
+        "id_parent": "gestion",
+        "label": "Inversores",
+        "enlace": "inversores",
+        "icono": "fa fa-boxes",
+        "habilitado": 1,
+        "orden": 1
+    },
+    {
+        "id_item": "incidencias",
+        "id_parent": "gestion",
+        "label": "Incidencias",
+        "enlace": "incidencias",
+        "icono": "fa fa-boxes",
+        "habilitado": 1,
+        "orden": 1
+    },
+    {
+        "id_item": "USUARIO",
+        "id_parent": "0",
+        "label": "Usuarios",
+        "enlace": "usuarios",
+        "icono": "fa fa-users",
+        "habilitado": 1,
+        "orden": 8
+    },
+    {
+        "id_item": "gastos",
+        "id_parent": "0",
+        "label": "Gastos",
+        "enlace": "gastos",
+        "icono": "fas fa-money-bill-wave",
+        "habilitado": 1,
+        "orden": 9
+    },
+    {
+        "id_item": "facturacion",
+        "id_parent": "0",
+        "label": "Facturacion",
+        "enlace": "facturacion",
+        "icono": "fas fa-file",
+        "habilitado": 1,
+        "orden": 10
+    },
+    {
+        "id_item": "facturacion",
+        "id_parent": "facturacion",
+        "label": "Facturacion",
+        "enlace": "facturacion",
+        "icono": "fas fa-file",
+        "habilitado": 1,
+        "orden": 10
+    },
+    {
+        "id_item": "iva",
+        "id_parent": "facturacion",
+        "label": "IVA",
+        "enlace": "iva",
+        "icono": "fas fa-file",
+        "habilitado": 1,
+        "orden": 10
+    },
+    {
+        "id_item": "cuentas_corrientes",
+        "id_parent": "0",
+        "label": "Cuentas",
+        "enlace": "cuentas-corrientes",
+        "icono": "fas fa-money-check",
+        "habilitado": 1,
+        "orden": 12
+    }
+]

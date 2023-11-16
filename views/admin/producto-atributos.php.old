@@ -1,0 +1,199 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-group text-left">
+            <a href="<?= $panel_uri ?>/productos" class="btn btn-default">Atr&aacute;s</a>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <form id="frm-attr" action="<?= ($frm_action = "!AdminProductoAtr/guardar") ?>">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="id_producto_rel">Producto Padre:</label>
+                            <select name="id_producto_rel" minlength="0" id="id_producto_rel" class="form-control">
+                                <option value=""></option>
+                                <?php foreach ($articulos as $articulo): ?>
+                                    <option value="<?= $articulo->id_producto ?>" rel="<?= $articulo->online_price ?>"><?= "{$articulo->id_producto} - " . $articulo->nombre_producto ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="id_categoria">Categor&iacute;a: <i class="required"></i></label>
+                            <select name="id_categoria" id="id_categoria" class="form-control">
+                                <option value="">Seleccionar</option>
+                                <?php
+                                foreach ($categorias as $ctg)
+                                {
+                                    echo "<option value='{$ctg->id_item}' " . ($row->id_categoria == $ctg->id_item ? "selected" : null) . ">{$ctg->categoria}</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <?php
+                            $val = $row->dimension_array;
+                            $inputs = null;
+                            foreach (array('alto', 'ancho', 'largo', 'peso') as $item)
+                            {
+                                $inputs .= "<div class='input-group-addon' style='text-align:left;padding:2px 0;background: none;border: none'>";
+                                $inputs .= "<label for='js-{$item}'>" . ucfirst($item) . "</label>";
+                                $inputs .= "<input type='tel' id='js-{$item}' name='dimension[{$item}]' value='{$val[$item]}' class='form-control'>";
+                                $inputs .= "</div>";
+                            }
+                            echo $inputs;
+                            ?>
+                        </div>
+                        <div class="form-group col-md-3" style="">
+                            <br/>
+                            <label for="publicado" class="btn btn-default">
+                                <input type="checkbox" id="publicado" name="publicado" <?= ($row->publicado ? "checked" : null) ?>>
+                                &nbsp;Publicado
+                            </label>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="precio">Precio:</label>
+                            <input type="tel" id="precio" name="precio" class="form-control" value="<?= $row->precio_online ?>">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="texto">Texto:</label>
+                            <textarea name="texto" id="texto" rows="10" class="form-control"><?= $row->texto ?></textarea>
+                        </div>
+                    </div>
+                    <?php
+                    $id_producto = $row->id_producto;
+                    $inputHidden = "<input type='hidden' name='id_producto' value='{$id_producto}'/>";
+                    echo $inputHidden;
+                    ?>
+                    <div class="form-btns">
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <form id="frm-image" action="<?= $frm_action . "?img=1" ?>">
+                    <div class="row">
+                        <br/>
+                        <input type="hidden" name="id_imagen" id="id_imagen">
+                        <div class="form-group col-md-5">
+                            <?= $inputFile ?>
+                            <br/>
+                            <button type="submit" class="btn btn-primary">Agregar</button>
+                        </div>
+                        <div class="form-group col-md-7">
+                            <h5 class="text-uppercase">Im&aacute;genes</h5>
+                            <div id="imagenes"></div>
+                        </div>
+                    </div>
+                    <?= $inputHidden ?>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    #articulo-imagen img {
+        border: 1px solid #ccc;
+    }
+
+    .image-actions {
+        position: absolute;
+        right: 10px;
+        padding: 5px 10px;
+    }
+
+    .image-actions a {
+        background: #eee;
+        border-radius: 3px;
+        padding: 3px 5px;
+        border: 1px solid #ccc;
+    }
+</style>
+<script>
+    $('#precio').decimal(".");
+    new Jodit("#texto", {
+        "uploader": {
+            "insertImageAsBase64URI": true
+        },
+        "height": 300,
+        "language": "es",
+        "direction": "ltr",
+        "askBeforePasteHTML": false,
+        "askBeforePasteFromWord": false,
+        "buttons": ",,,,,,,,,,,,,,,,fontsize,paragraph,|,file,video,link,|,align,undo,redo,\n,cut,hr,eraser,copyformat,|,symbol,selectall,print"
+    });
+    document.getElementsByClassName('page-header')[0].insertAdjacentHTML("beforeend", "<?=$row->detalle . " ({$row->cantidad_online}) {$itemUrl}"?>");
+    $('#id_producto_rel').val("<?=$row->id_parent?>").on("change", function () {
+        let option = this.options[this.selectedIndex];
+        document.getElementById('precio').value = option.getAttribute("rel");
+    }).selectar();
+    document.getElementById('frm-attr').onsubmit = function (evt) {
+        evt.preventDefault();
+        submit_form(this);
+    };
+
+    document.getElementById('frm-image').onsubmit = function (e) {
+        e.preventDefault();
+        if ( !document.getElementsByName('input_file')[0].value )
+        {
+            jdialog("Seleccionar una imagen");
+            return;
+        }
+        let thisForm = this;
+        submit_form(thisForm, function () {
+            document.getElementById('cropit-image-zoom').value = 1;
+            document.getElementsByClassName('cropit-preview-image')[0].setAttribute("src", "");
+            document.getElementsByClassName('cropit-image-input')[0].value = "";
+            document.getElementById('cropit-values').value = "";
+            imagenes();
+        });
+    };
+
+    document.getElementById('publicado').onclick = function () {
+        fetch("!AdminProducto/setEstado", {
+            "method": "POST",
+            "body": new URLSearchParams({
+                "id_articulo": "<?=$id_producto?>",
+                "estado": Number(this.checked),
+                "attr": this.name
+            })
+        });
+    };
+
+    function img_borrar(id)
+    {
+        jconfirm(function ($true) {
+            if ( !$true )
+            {
+                return;
+            }
+            fetch("!AdminProductoAtr/borrarImagen?id=" + id).then(function ($res) {
+                $res.json().then(function ($js) {
+                    if ( $js.error )
+                    {
+                        jdialog($js.error);
+                        return;
+                    }
+                    imagenes();
+                })
+            });
+        }, "Esta imagen se eliminará. ¿Continuar?");
+    }
+
+    function imagenes()
+    {
+        let imageContainer = document.getElementById('imagenes');
+        imageContainer.innerHTML = "<i class='fa fa-spin fa-spinner'></i>";
+        fetch("!AdminProductoAtr/imagenesArticulo", {
+            "method": "POST",
+            "body": new URLSearchParams({
+                "cup": "<?=$row->id_producto?>"
+            })
+        }).then(function ($res) {
+            return $res.text().then(function ($html) {
+                imageContainer.innerHTML = $html;
+            });
+        });
+    }
+
+    imagenes();
+</script>

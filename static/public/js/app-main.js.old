@@ -1,0 +1,177 @@
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if ( d.getElementById(id) )
+    {
+        return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/es_LA/sdk.js";
+    js.crossorigin = "anonymous";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+const sesAuth = "auth";
+
+function checkLoginState()
+{
+    FB.getLoginStatus(function (response) {
+        status_callback(response);
+    });
+}
+
+function facebook_login(callback)
+{
+    FB.login(function (response) {
+        callback.call(this, response);
+    }, {
+        "scope": "public_profile,email",
+        "auth_type": "rerequest"
+    });
+}
+
+function status_callback(response)
+{
+    if ( response.status === "connected" )
+    {
+        FB.api("/me", {"fields": "last_name,first_name,gender,email,birthday"}, function (data) {
+            data["fb_token"] = response.authResponse.accessToken;
+            fetch('!FrontUsuario/continuar', {
+                "method": "POST",
+                "body": new URLSearchParams(data)
+            }).then(function (res) {
+                //console.log(res.json())
+                res.json().then(function ($json) {
+                    if ( ($error = $json["error"]) )
+                    {
+                        jdialog($error, true);
+                        return;
+                    }
+                    sessionStorage.setItem(sesAuth, true);
+                    if ( typeof after_submit === "function" )
+                    {
+                        after_submit($json);
+                    }
+                });
+            });
+        });
+    }
+}
+
+window.fbAsyncInit = function () {
+    FB.init({
+        "appId": '355127731747742',
+        "autoLogAppEvents": false,
+        "xfbml": true,
+        "version": 'v3.3'
+    });
+
+    if ( !sessionStorage.getItem(sesAuth) )
+    {
+        checkLoginState();
+    }
+};
+
+/*window.onLoad = function () {
+    /*new Vue({
+        "el": "#main-content",
+        "components": {}
+    });
+
+    Vue.components('');
+};*/
+var params = JSON.parse(sessionStorage.getItem("cache") || '{}');
+
+function set_param($key, $value)
+{
+    if ( typeof $key === "object" )
+    {
+        Object.assign(params, $key);
+    }
+    else
+    {
+        params[$key] = $value;
+    }
+    url = Object.keys(params).map(function (k) {
+        return encodeURIComponent(k) + "=" + encodeURIComponent(params[k])
+    }).join("&");
+    history.pushState(null, null, location.href.replace(/\?.+/g, "") + "?" + url);
+    sessionStorage.setItem("cache", JSON.stringify(params));
+    get_articulo();
+}
+
+function paginar(ref)
+{
+    var page = ref.getAttribute('href').replace(/.+=/g, "");
+    ref.setAttribute('href', 'javascript:void(0)');
+    set_param("p", page);
+    return false;
+}
+
+function set_categoria($opt)
+{
+    const tituloCategoria = document.getElementById('list-title');
+    const currentClass = "current";
+    let es_marca = parseInt($opt.getAttribute("rel")), titulo;
+    let option_text;
+    //tituloCategoria.scrollIntoView();
+    document.getElementById('dv-filter-group').scrollIntoView();
+    if ( (current = document.getElementsByClassName(currentClass)[0]) )
+    {
+        current.classList.remove(currentClass)
+    }
+    $opt.classList.add(currentClass);
+    delete params["p"];
+    //delete params[es_marca ? "ctg" : "marca"];
+    if ( (tagElm = document.getElementById('spn-' + $opt.id)) )
+    {
+        tagElm.remove();
+        delete params[$opt.id];
+    }
+    if ( parseInt($opt.value) )
+    {
+        option_text = $opt.options[$opt.selectedIndex].textContent;
+        tag = `<h4 id="spn-${$opt.id}">${option_text}&nbsp;<span onclick='quitar_tag(\"${$opt.id}\")'>&times;</span></h4>`;
+        tituloCategoria.insertAdjacentHTML("beforeend", tag);
+    }
+    set_param($opt.id, $opt.value);
+}
+
+function quitar_tag($this)
+{
+    if ( (select = document.getElementById($this)) )
+    {
+        select.value = "";
+        select.onchange();
+    }
+}
+
+function get_articulo()
+{
+    const articulosContainer = document.getElementById('articulos-list');
+    let $spin = document.createElement("div");
+    $spin.style["background"] = "#fff";
+    $spin.style["opacity"] = ".5";
+    $spin.style["position"] = "absolute";
+    $spin.style["z-index"] = "10";
+    $spin.style["left"] = "0";
+    $spin.style["right"] = "0";
+    $spin.style["display"] = "flex";
+    $spin.style["justify-content"] = "center";
+    $spin.style["align-items"] = "center";
+    $spin.style["height"] = articulosContainer.offsetHeight + "px";
+    $spin.innerHTML = "<img src='static/images/spin.gif' alt='' width='220'>";
+    articulosContainer.prepend($spin);
+    fetch("!FrontInicio/articulos", {
+        "method": "POST",
+        "body": new URLSearchParams(params)
+    }).then(function (rta) {
+        rta.text().then(function ($json) {
+            articulosContainer.innerHTML = $json;
+            if ( params["p"] )
+            {
+                document.getElementById('list-title').scrollIntoView();
+            }
+        })
+    });
+}

@@ -1,0 +1,63 @@
+{
+    "dev":0,
+    "site_name":"LeBron Suplementos",
+    "email_contacto":"lebronsuplementos23@gmail.com",
+    "email_ventas":"lebronsuplementos23@gmail.com",
+    "email_franquicia":"lebronsuplementos23@gmail.com",
+    "contacto":{
+       "email":"lebronsuplementos23@gmail.com",
+       "telefono":"381 633-7883"
+    },
+    "location":[
+       {
+          "direccion":"Av Mitre 564, San Miguel de Tucum\u00e1n",
+          "horario":{
+             "Lunes a Viernes":"09 a 13 Hs y 16 a 21 Hs",
+             "S\u00e1bado":"09 a 14:30 Hs"
+          },
+          "latlng":"-26.820156,-65.216709"
+       },
+       {
+          "direccion":"Buenos Aires 42, San Miguel de Tucum\u00e1n",
+          "horario":{
+             "Lunes a Viernes":"09 a 13:30 Hs y 17 a 21 Hs",
+             "S\u00e1bado":"09:30 a 13:30 Hs y 17 a 21 Hs"
+          },
+          "latlng":"-26.8312737,-65.2064816"
+       },
+       {
+          "direccion":"Belgrano 354, Lules",
+          "horario":{
+             "Lunes a S\u00e1bado":"10 a 12 Hs y 18 a 21 hs."
+          },
+          "latlng":"-26.929880, -65.338714"
+       },
+       {
+          "direccion":"25 de Mayo 762, San Miguel de Tucum\u00e1n",
+          "horario":{
+            "Lunes a Viernes":"09 a 13:30 Hs y 17 a 21 Hs",
+            "S\u00e1bado":"09:30 a 13:30 Hs y 17 a 21 Hs"
+          },
+          "latlng":"-26.82063737142857, -65.20212248163266"
+       }
+    ],
+    "social":{
+       "contacto":".\/contacto.html",
+       "facebook-square":"\/\/www.facebook.com\/lebronsuplementos",
+       "twitter":"",
+       "instagram":"\/\/www.instagram.com\/lebronsuplementos"
+    },
+    "por_pagina":50,
+    "precio_dolar":"120",
+    "dolar_paralelo":"300",
+    "tarjeta_un_pago":"10",
+    "tarjeta_tres_pago":"15",
+    "tarjeta_seis_pago":"20",
+    "utilidad":"3|USD",
+    "stock_alerta":5,
+    "fee_mp":0,
+    "retencion_mp":20,
+    "upd_lista":false,
+    "cuit":20358073558,
+    "cuit_lebron_sas":30717223469
+ }
